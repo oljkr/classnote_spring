@@ -33,10 +33,10 @@
 		<c:forEach var="dto" items="${list}">
 			<tr>
 				<td>${dto.mediagroupno}</td>
-				<td>${dto.title}</td>
+				<td><a href="../media/list.do?mediagroupno=${dto.mediagroupno}">${dto.title}</a></td>
 				<td>
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
+					<input type="button" value="수정" onclick="location.href='update.do?mediagroupno=${dto.mediagroupno}'">
+					<input type="button" value="삭제" onclick="location.href='delete.do?mediagroupno=${dto.mediagroupno}'">
 				</td>
 			</tr>
 		</c:forEach>
@@ -46,19 +46,23 @@
 	
 	<!-- 페이지 리스트 -->
 	<c:if test="${requestScope.count>0 }">
-		<c:set var="pageCount" value="${requestScope.totalPage}"/>
+		<c:set var="pageCount" value="${requestScope.totalPage}"/> <!-- 전체 페이지수 -->
 		<c:set var="startPage" value="${requestScope.startPage}"/>
 		<c:set var="endPage" value="${requestScope.endPage}"/>
 		
 		<div class="content">
-			<c:if test="${endPage>pageCount}">
+			<!-- Cont에서 계산되는 endPage가 현재 데이터 갯수로 계산되는 전체 페이지 수보다 클 경우 
+		     	 endPage를 현재데이터 갯수로 계산되는 전체 페이지 수+1로 설정함 -->
+			<c:if test="${endPage>pageCount}"> 
 				<c:set var="endPage" value="${pageCount+1}"/>
 			</c:if>
 			
-			<c:if test="${startPage>0}">
+			<!-- 현재 페이지가 11이상일 때 [이전]버튼이 나타남 -->
+			<c:if test="${startPage>0}"> 
 				<a href="./list.do?pageNum=${startPage}">[이전]</a>
 			</c:if>
 			
+
 			<c:forEach var="i" begin="${startPage+1}" end="${endPage-1}">
 				<c:choose>
 					<c:when test="${pageNum==i}"><span style="font-weight: bold">${i}</span></c:when>
@@ -66,6 +70,8 @@
 				</c:choose>
 			</c:forEach>
 			
+			<!-- Cont에서 계산되는 endPage가 현재 데이터 갯수로 계산되는 전체 페이지 수보다 작을경우 
+		    	 [다음]버튼을 나타내게 함 -->
 			<c:if test="${endPage<pageCount}">
 				<a href="./list.do?pageNum=${startPage+11}">[다음]</a>
 			</c:if>
