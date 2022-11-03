@@ -1,0 +1,13 @@
+--mediagroup_sql.txt
+--마리아 DB 기준 쿼리문 수정
+
+--미디어 그룹 테이블 생성
+CREATE TABLE mediagroup (
+  mediagroupno INT        NOT NULL PRIMARY KEY, -- 그룹번호
+  title        VARCHAR(255) NOT NULL              -- 그룹제목 
+);
+
+--시퀀스 생성
+create sequence mediagroup_seq;
+
+commit;
