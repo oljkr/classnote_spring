@@ -33,8 +33,8 @@
         
         <div class="bottom">
         	<input type='submit' value='음원등록'>
-        	<input type="button" value="음원목록" onclick="list.do?mediagroupno=${requestScope.mediagroupno}">
-        	<input type="button" value="HOME" onclick="/home.do">
+        	<input type="button" value="음원목록" onclick="location.href='list.do?mediagroupno=${requestScope.mediagroupno}'">
+        	<input type="button" value="HOME" onclick="location.href='/home.do'">
         </div>
 	
 	</form>

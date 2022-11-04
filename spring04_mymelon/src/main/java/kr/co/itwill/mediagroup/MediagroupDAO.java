@@ -29,7 +29,7 @@ public class MediagroupDAO {
 		try {
 			sql=new StringBuilder();
 			sql.append(" INSERT INTO mediagroup(mediagroupno, title) ");
-			sql.append(" VALUES( nextval(mediagroup_seq), ?) ");
+			sql.append(" VALUES( mediagroup_seq.nextval, ?) ");
 			cnt=jt.update(sql.toString(), dto.getTitle());
 		}catch (Exception e) {
 			System.out.println("미디어그룹등록실패:" + e);

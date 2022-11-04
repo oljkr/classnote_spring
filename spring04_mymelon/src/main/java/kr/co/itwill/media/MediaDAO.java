@@ -68,5 +68,49 @@ public class MediaDAO {
 		}//end
 		return cnt;
 	}//create() end
+	
+	public MediaDTO read(int mediano) {
+		MediaDTO dto=null;
+		try {
+			sql=new StringBuilder();
+			sql.append(" SELECT mediano, title, rdate, poster, filename, filesize, mview, mediagroupno ");
+			sql.append(" FROM media ");
+			sql.append(" WHERE mediano = " + mediano);
+			
+			RowMapper<MediaDTO> rowMapper=new RowMapper<MediaDTO>() {
+				@Override
+				public MediaDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+					MediaDTO dto=new MediaDTO();
+					dto.setMediano(rs.getInt("mediano"));
+					dto.setTitle(rs.getString("title"));
+					dto.setRdate(rs.getString("rdate"));
+					dto.setPoster(rs.getString("poster"));
+					dto.setFilename(rs.getString("filename"));
+					dto.setFilesize(rs.getLong("filesize"));
+					dto.setMview(rs.getString("mview"));
+					dto.setMediagroupno(rs.getInt("mediagroupno"));
+					return dto;
+				}//mapRow() end
+			};//rowMapper end
+			
+			dto=jt.queryForObject(sql.toString(), rowMapper);
+		}catch (Exception e) {
+			System.out.println("상세보기실패:" +e);
+		}//end
+		return dto;
+	}//read() end
+	
+	public int delete(int mediano) {
+		int cnt=0;
+		try {
+			sql=new StringBuilder();
+			sql.append(" DELETE FROM media ");
+			sql.append(" WHERE mediano = ? ");
+			cnt=jt.update(sql.toString(), mediano);		
+		}catch (Exception e) {
+			System.out.println("삭제실패:" + e);
+		}//end
+		return cnt;
+	}//delete() end
 
 }//class end
