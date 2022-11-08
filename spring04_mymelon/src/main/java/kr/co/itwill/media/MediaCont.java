@@ -156,30 +156,31 @@ public class MediaCont {
 		return mav;
 	}//deleteProc() end
 	
-	@RequestMapping(value = "mediagroup/update.do", method = RequestMethod.POST)
-	public ModelAndView updateProc(@ModelAttribute MediaDTO dto, HttpServletRequest req) {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("media/msgView");
-		
-		String basePath=req.getRealPath("/storage");
-		MediaDTO oldDTO=dao.read(mediano);
-		
-		int cnt=dao.update(dto);
-		if(cnt==0) {
-			mav.setViewName("mediagroup/msgView");
-			String img="<img src='../images/kuromi1.png' width='200px'>";
-			String link1="<input type='button' value='다시시도' onclick='javascript:history.back()'>";
-			String link2="<input type='button' value='그룹목록' onclick='location.href=\"list.do\"'>";
-			mav.addObject("msg1", "<p>미디어 그룹 수정 실패</p>");
-			mav.addObject("img", img);
-			mav.addObject("link1", link1);
-			mav.addObject("link2", link2);
-		}else {
-			mav.setViewName("redirect:/mediagroup/list.do");
-		}//if end
-		
-		return mav;
-	}//updateProc() end
+//	
+//	@RequestMapping(value = "mediagroup/update.do", method = RequestMethod.POST)
+//	public ModelAndView updateProc(@ModelAttribute MediaDTO dto, HttpServletRequest req) {
+//		ModelAndView mav=new ModelAndView();
+//		mav.setViewName("media/msgView");
+//		
+//		String basePath=req.getRealPath("/storage");
+//		MediaDTO oldDTO=dao.read(mediano);
+//		
+//		int cnt=dao.update(dto);
+//		if(cnt==0) {
+//			mav.setViewName("mediagroup/msgView");
+//			String img="<img src='../images/kuromi1.png' width='200px'>";
+//			String link1="<input type='button' value='다시시도' onclick='javascript:history.back()'>";
+//			String link2="<input type='button' value='그룹목록' onclick='location.href=\"list.do\"'>";
+//			mav.addObject("msg1", "<p>미디어 그룹 수정 실패</p>");
+//			mav.addObject("img", img);
+//			mav.addObject("link1", link1);
+//			mav.addObject("link2", link2);
+//		}else {
+//			mav.setViewName("redirect:/mediagroup/list.do");
+//		}//if end
+//		
+//		return mav;
+//	}//updateProc() end
 	
 	
 }//class end
