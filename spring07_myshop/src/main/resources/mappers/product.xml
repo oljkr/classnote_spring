@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- product.xml -->
+<!-- 실행할 SQL문을 정의해 놓은 파일 (DAO클래스 역할) -->
+<!-- 주의사항 : 종결문자 ; 생략해야 함 -->
+<mapper namespace="product">
+	<select id="list" resultType="java.util.Map">
+		SELECT product_code, product_name, description, price, filename
+		FROM product
+		ORDER BY product_name	
+	</select>
+	
+</mapper>
