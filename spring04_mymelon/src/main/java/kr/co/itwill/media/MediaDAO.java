@@ -27,7 +27,7 @@ public class MediaDAO {
 	public List<MediaDTO> list(int mediagroupno) {
 		List<MediaDTO> list=null;
 		try {
-			sql=new StringBuilder();
+			sql=new StringBuilder();	
 			sql.append(" SELECT mediano, title, rdate, poster, filename, filesize, mview, mediagroupno ");
 			sql.append(" FROM media ");
 			sql.append(" WHERE mview='Y' AND mediagroupno="+mediagroupno);

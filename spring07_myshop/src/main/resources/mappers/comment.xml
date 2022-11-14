@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- comment.xml -->
+<!-- 실행할 SQL문을 정의해 놓은 파일 (DAO클래스 역할) -->
+<!-- 주의사항 : 종결문자 ; 생략해야 함 -->
+<mapper namespace="comment">
+	<insert id="insert" parameterType="kr.co.itwill.comment.CommentDTO">
+		INSERT INTO pcomment(cno, pno, content, wname)
+		VALUES (pcomment_seq.nextval, #{pno}, #{content}, #{wname})
+	</insert>
+	
+	<select id="list" resultType="kr.co.itwill.comment.CommentDTO" parameterType="int">
+		SELECT cno, pno, content, wname, regdate
+		FROM pcomment
+		WHERE pno=#{pno}
+	</select>
+</mapper>
